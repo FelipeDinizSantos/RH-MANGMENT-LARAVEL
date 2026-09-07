@@ -1,7 +1,7 @@
 <x-layouts.layout-app page-title='Home'>
 
-    <h1 class="text-center my-3">
-        Hello, World!
-    </h1>
+    <p class="text-center mt-3">
+        Hello, World
+    </p>
 
 </x-layouts.layout-app>
