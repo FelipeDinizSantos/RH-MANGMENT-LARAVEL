@@ -22,6 +22,10 @@
 
 <body>
 
+    @auth
+        <x-user-bar />
+    @endauth
+
     {{ $slot }}
 
     <!-- resources -->
