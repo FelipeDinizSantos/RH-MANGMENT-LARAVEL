@@ -1,5 +1,5 @@
 <div class="d-flex flex-column sidebar pt-4">
-    <a href="#" class="{{ route('home') }}">
+    <a href="{{ route('home') }}" class="">
         <i class="fas fa-home me-3"></i>
         Home
     </a>
@@ -23,7 +23,7 @@
 
     <hr>
 
-    <a href="#" class="">
+    <a href="{{ route('user.profile') }}" class="">
         <i class="fas fa-cog me-3"></i>
         Perfil de Usuário
     </a>
