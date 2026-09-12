@@ -15,7 +15,7 @@
             Colaboradores do RH
         </a>
 
-        <a href="#" class="">
+        <a href="{{ route('department.index') }}" class="">
             <i class="fas fa-industry me-3"></i>
             Departamentos
         </a>
