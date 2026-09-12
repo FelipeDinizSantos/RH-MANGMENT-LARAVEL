@@ -18,7 +18,7 @@
 
             <table class="table w-50" id="table">
                 <thead class="table-dark">
-                    <th>Departamento</th>
+                    <th>Departamentos</th>
                     <th></th>
                 </thead>
                 <tbody>
