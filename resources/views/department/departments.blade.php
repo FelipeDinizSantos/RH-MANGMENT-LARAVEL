@@ -9,11 +9,11 @@
         @empty($departments)
             <div class="text-center my-5">
                 <p>Nenhum departamento encontrado.</p>
-                <a href="#" class="btn btn-primary">Criar um Novo Departamento</a>
+                <a href="{{ route('department.new') }}" class="btn btn-primary">Criar um Novo Departamento</a>
             </div>
         @else
             <div class="mb-3">
-                <a href="#" class="btn btn-primary">Criar um Novo Departamento</a>
+                <a href="{{ route('department.new') }}" class="btn btn-primary">Criar um Novo Departamento</a>
             </div>
 
             <table class="table w-50" id="table">
@@ -26,11 +26,15 @@
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>
-                                <div class="d-flex gap-3 justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-pen-to-square me-2"></i>Editar</a>
-                                    <a href="#" class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-trash-can me-2"></i>Remover</a>
+                                <div class="flex gap-3 justify-content-end">
+                                    @if ($department->id === 1)
+                                        <i class="fa-solid fa-lock"></i>
+                                    @else
+                                        <a href="{{ route('department.edit', $department->id) }}" class="btn btn-sm btn-outline-dark"><i
+                                                class="fa-regular fa-pen-to-square me-2"></i>Editar</a>
+                                        <a href="#" class="btn btn-sm btn-outline-dark"><i
+                                                class="fa-regular fa-trash-can me-2"></i>Remover</a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
