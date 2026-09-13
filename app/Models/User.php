@@ -12,6 +12,10 @@ class User extends AuthUser
 {
     use Notifiable;
 
+    protected $casts = [
+        'permissions' => 'array'
+    ];
+
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);

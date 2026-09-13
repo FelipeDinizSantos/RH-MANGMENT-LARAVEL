@@ -10,7 +10,7 @@
             Colaboradores
         </a>
 
-        <a href="#" class="">
+        <a href="{{ route('colaborators.rhUsers.index') }}" class="">
             <i class="fas fa-user-gear me-3"></i>
             Colaboradores do RH
         </a>

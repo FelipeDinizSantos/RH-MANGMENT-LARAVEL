@@ -6,7 +6,7 @@
 
         <hr>
 
-        @empty($departments)
+        @if(count($departments) === 0)
             <div class="text-center my-5">
                 <p>Nenhum departamento encontrado.</p>
                 <a href="{{ route('department.new') }}" class="btn btn-primary">Criar um Novo Departamento</a>
