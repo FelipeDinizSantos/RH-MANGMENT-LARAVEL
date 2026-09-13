@@ -20,4 +20,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/departments/edit-departament/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
     Route::post('/departments/update-departament', [DepartmentController::class, 'update'])->name('department.update');
+
+    Route::get('/departments/delete-departament/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+    Route::get('/departments/delete-departament-confirm/{id}', [DepartmentController::class, 'confirmDelete'])->name('department.confirmDelete');
 });

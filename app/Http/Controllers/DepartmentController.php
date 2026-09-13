@@ -75,4 +75,31 @@ class DepartmentController extends Controller
 
         return redirect()->route('department.index');
     }
+
+    public function delete(int $id): View|RedirectResponse
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        if ((int) $id === 1) {
+            return redirect()->route('department.index');
+        }
+
+        $department = Department::findOrFail((int) $id);
+
+        return view('department.confirm-delete', compact('department'));
+    }
+
+    public function confirmDelete(int $id): RedirectResponse
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        if ((int) $id === 1) {
+            return redirect()->route('department.index');
+        }
+
+        $department = Department::findOrFail((int) $id);
+        $department->delete();
+
+        return redirect()->route('department.index');
+    }
 }
