@@ -26,13 +26,13 @@
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>
-                                <div class="flex gap-3 justify-content-end">
-                                    @if ($department->id === 1)
+                                <div class="d-flex gap-3 justify-content-end">
+                                    @if ($department->id < 3)
                                         <i class="fa-solid fa-lock"></i>
                                     @else
-                                        <a href="{{ route('department.edit', $department->id) }}" class="btn btn-sm btn-outline-dark"><i
+                                        <a href="{{ route('department.edit', $department->id) }}" class="btn btn-sm btn-outline-dark ms-3"><i
                                                 class="fa-regular fa-pen-to-square me-2"></i>Editar</a>
-                                        <a href="{{ route('department.delete', $department->id) }}" class="btn btn-sm btn-outline-dark"><i
+                                        <a href="{{ route('department.delete', $department->id) }}" class="btn btn-sm btn-outline-dark ms-3"><i
                                                 class="fa-regular fa-trash-can me-2"></i>Remover</a>
                                     @endif
                                 </div>

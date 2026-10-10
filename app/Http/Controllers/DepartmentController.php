@@ -44,7 +44,7 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
 
-        if ((int) $id === 1) {
+        if ($this->isDepartamentBlocked($id)) {
             return redirect()->route('department.index');
         }
 
@@ -59,7 +59,7 @@ class DepartmentController extends Controller
 
         $id = $request->input('id');
 
-        if ((int) $id === 1) {
+        if ($this->isDepartamentBlocked($id)) {
             return redirect()->route('department.index');
         }
 
@@ -80,7 +80,7 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
 
-        if ((int) $id === 1) {
+        if ($this->isDepartamentBlocked($id)) {
             return redirect()->route('department.index');
         }
 
@@ -93,7 +93,7 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
 
-        if ((int) $id === 1) {
+        if ($this->isDepartamentBlocked($id)) {
             return redirect()->route('department.index');
         }
 
@@ -101,5 +101,10 @@ class DepartmentController extends Controller
         $department->delete();
 
         return redirect()->route('department.index');
+    }
+
+    private function isDepartamentBlocked(int $id): bool
+    {
+        return in_array(intval($id), [1, 2]);
     }
 }

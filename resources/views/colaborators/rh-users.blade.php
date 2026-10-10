@@ -16,7 +16,7 @@
                 <a href="{{ route('colaborators.rhUsers.newColaborator') }}" class="btn btn-primary">Criar um Novo Colaborador</a>
             </div>
 
-            <table class="table w-50" id="table">
+            <table class="table" id="table">
                 <thead class="table-dark">
                     <th>
                         Nome
@@ -25,7 +25,16 @@
                         Emails
                     </th>
                     <th>
+                        Perfil
+                    </th>
+                    <th>
                         Permissões
+                    </th>
+                    <th>
+                        Data de Admissão
+                    </th>
+                    <th>
+                        Cidade
                     </th>
                     <th></th>
                 </thead>
@@ -34,13 +43,16 @@
                         <tr>
                             <td>{{ $colaborator->name }}</td>
                             <td>{{ $colaborator->email }}</td>
+                            <td>{{ $colaborator->role }}</td>
                             <td>{{ implode(',', $colaborator->permissions) }}</td>
+                            <td>{{ \Carbon\Carbon::parse($colaborator->details->admission_date)->format('d/m/Y') }}</td>
+                            <td>{{ $colaborator->details->city }}</td>
                             <td>
-                                <div class="flex gap-3 justify-content-end">
+                                <div class="d-flex gap-3 justify-content-end">
                                     <a href="#" class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-pen-to-square me-2"></i>Editar</a>
+                                            class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
                                     <a href="#" class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-trash-can me-2"></i>Remover</a>
+                                            class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
                                 </div>
                             </td>
                         </tr>

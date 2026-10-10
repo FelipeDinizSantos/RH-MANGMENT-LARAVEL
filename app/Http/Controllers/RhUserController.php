@@ -15,7 +15,9 @@ class RhUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
 
-        $colaborators = User::where('role', 'rh')->get();
+        $colaborators = User::with(['details'])
+            ->where('role', 'rh')
+            ->get();
 
         return view('colaborators.rh-users', compact('colaborators'));
     }
@@ -36,7 +38,7 @@ class RhUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'select_department' => 'required|exists:departments,id',
+            'select_department' => 'required|exists:departments,id|in:2',
             'address' => 'required|string|max:255',
             'zip_code' => 'required|string|max:10',
             'city' => 'required|string|max:50',
