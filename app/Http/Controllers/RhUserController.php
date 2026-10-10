@@ -36,7 +36,13 @@ class RhUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'select_departments' => 'required|exists:departments,id'
+            'select_department' => 'required|exists:departments,id',
+            'address' => 'required|string|max:255',
+            'zip_code' => 'required|string|max:10',
+            'city' => 'required|string|max:50',
+            'phone' => 'required|string|max:20',
+            'salary' => 'required|decimal:2', // força que o valor tenha 2 casas decimais
+            'admission_date' => 'required|date_format:Y-m-d',
         ]);
 
         $user = new User();
@@ -47,6 +53,15 @@ class RhUserController extends Controller
         $user->role = 'rh';
 
         $user->save();
+
+        $user->details()->create([
+            'address' => $request->input('address'),
+            'zip_code' => $request->input('zip_code'),
+            'city' => $request->input('city'),
+            'phone' => $request->input('phone'),
+            'salary' => $request->input('salary'),
+            'admission_date' => $request->input('admission_date'),
+        ]);
 
         return redirect()->route('colaborators.rhUsers.index')->with('success', 'Colaborador criado com sucesso!');
     }
