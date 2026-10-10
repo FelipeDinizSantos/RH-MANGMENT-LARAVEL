@@ -95,8 +95,27 @@ class RhUserController extends Controller
         $user->details->update([
             'salary' => $request->input('salary'),
             'admission_date' => $request->date('admission_date')
-        ]); 
+        ]);
 
         return redirect()->route('colaborators.rhUsers.index')->with('success', 'Colaborador atualizado com sucesso!');
+    }
+
+    public function deleteRhColaborator(int $id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        $colaborator = User::findOrFail($id);
+
+        return view('colaborators.delete-rh-user', compact('colaborator'));
+    }
+
+    public function confirmDeleteRhColaborator(int $id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        $colaborator = User::findOrFail($id);
+        $colaborator->delete();
+
+        return redirect()->route('colaborators.rhUsers.index')->with('success', 'Colaborador removido com sucesso!');
     }
 }

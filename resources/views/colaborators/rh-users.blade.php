@@ -55,7 +55,7 @@
                                 <div class="d-flex gap-3 justify-content-end">
                                     <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
-                                    <a href="#" class="btn btn-sm btn-outline-dark"><i
+                                    <a href="{{ route('colaborators.rhUsers.delete-rh-user', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
                                 </div>
                             </td>
