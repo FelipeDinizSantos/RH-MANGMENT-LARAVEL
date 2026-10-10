@@ -67,4 +67,36 @@ class RhUserController extends Controller
 
         return redirect()->route('colaborators.rhUsers.index')->with('success', 'Colaborador criado com sucesso!');
     }
+
+    public function editRhColaborator(int $id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        $colaborator = User::with('details')
+            ->where('role', 'rh')
+            ->findOrFail($id);
+
+        return view('colaborators.edit-rh-user', compact('colaborator'));
+    }
+
+    public function updateRhColaborator(Request $request)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'salary' => 'required|decimal:2',
+            'admission_date' => 'required|date_format:Y-m-d'
+        ]);
+
+        $user = User::with('details')
+            ->findOrFail($request->input('user_id'));
+
+        $user->details->update([
+            'salary' => $request->input('salary'),
+            'admission_date' => $request->date('admission_date')
+        ]); 
+
+        return redirect()->route('colaborators.rhUsers.index')->with('success', 'Colaborador atualizado com sucesso!');
+    }
 }

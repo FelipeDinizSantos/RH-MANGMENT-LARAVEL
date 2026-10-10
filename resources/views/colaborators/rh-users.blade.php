@@ -28,6 +28,9 @@
                         Perfil
                     </th>
                     <th>
+                        Salário
+                    </th>
+                    <th>
                         Permissões
                     </th>
                     <th>
@@ -44,12 +47,13 @@
                             <td>{{ $colaborator->name }}</td>
                             <td>{{ $colaborator->email }}</td>
                             <td>{{ $colaborator->role }}</td>
+                            <td>R$ {{ $colaborator->details->salary }}</td>
                             <td>{{ implode(',', $colaborator->permissions) }}</td>
                             <td>{{ \Carbon\Carbon::parse($colaborator->details->admission_date)->format('d/m/Y') }}</td>
                             <td>{{ $colaborator->details->city }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-outline-dark"><i
+                                    <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
                                     <a href="#" class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
