@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmAccountConttoller;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RhUserController;
@@ -9,29 +10,26 @@ Route::redirect('/', 'login');
 
 Route::middleware('auth')->group(function () {
     Route::view('/home', 'home')->name('home');
+    
     Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
-
     Route::post('/user/profile/update-password', [ProfileController::class, 'updatePassword'])->name('user.update.updatePassword');
     Route::post('/user/profile/update-user-data', [ProfileController::class, 'updateUserData'])->name('user.update.data');
-
     Route::get('/departments', [DepartmentController::class, 'index'])->name('department.index');
 
     Route::get('/departments/new', [DepartmentController::class, 'create'])->name('department.new');
     Route::post('/departments/create-departament', [DepartmentController::class, 'store'])->name('department.create');
-
     Route::get('/departments/edit-departament/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
     Route::post('/departments/update-departament', [DepartmentController::class, 'update'])->name('department.update');
-
     Route::get('/departments/delete-departament/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
     Route::get('/departments/delete-departament-confirm/{id}', [DepartmentController::class, 'confirmDelete'])->name('department.confirmDelete');
 
     Route::get('/rh-users', [RhUserController::class, 'index'])->name('colaborators.rhUsers.index');
     Route::get('/rh-users/new-colaborator', [RhUserController::class, 'newColaborator'])->name('colaborators.rhUsers.newColaborator');
     Route::post('/rh-users/create-colaborator', [RhUserController::class, 'createColaborator'])->name('colaborators.rhUsers.createColaborator');
-
     Route::get('/rh-users/edit-colaborator/{id}', [RhUserController::class, 'editRhColaborator'])->name('colaborators.rhUsers.editRhColaborator');
     Route::post('/rh-users/update-colaborator', [RhUserController::class, 'updateRhColaborator'])->name('colaborators.rhUsers.updateColaborator');
-
     Route::get('/rh-users/delete-colaborator/{id}', [RhUserController::class, 'deleteRhColaborator'])->name('colaborators.rhUsers.delete-rh-user');
     Route::get('/rh-users/confirm-delete-colaborator/{id}', [RhUserController::class, 'confirmDeleteRhColaborator'])->name('colaborators.rhUsers.confirmDelete');
+
+    Route::get('/confirm-account/{token}', [ConfirmAccountConttoller::class, 'confirmAccount'])->name('confirmAccount');
 });
