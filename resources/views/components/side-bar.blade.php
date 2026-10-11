@@ -5,7 +5,7 @@
     </a>
 
     @can('admin')
-        <a href="#" class="">
+        <a href="{{ route('colaborators.index') }}" class="">
             <i class="fas fa-users me-3"></i>
             Colaboradores
         </a>

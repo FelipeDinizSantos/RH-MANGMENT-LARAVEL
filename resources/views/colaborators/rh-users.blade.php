@@ -6,14 +6,16 @@
 
         <hr>
 
-        @if(count($colaborators) === 0)
+        @if (count($colaborators) === 0)
             <div class="text-center my-5">
                 <p>Nenhum colaborador encontrado.</p>
-                <a href="{{ route('colaborators.rhUsers.newColaborator') }}" class="btn btn-primary">Criar um Novo Colaborador</a>
+                <a href="{{ route('colaborators.rhUsers.newColaborator') }}" class="btn btn-primary">Criar um Novo
+                    Colaborador</a>
             </div>
         @else
             <div class="mb-3">
-                <a href="{{ route('colaborators.rhUsers.newColaborator') }}" class="btn btn-primary">Criar um Novo Colaborador</a>
+                <a href="{{ route('colaborators.rhUsers.newColaborator') }}" class="btn btn-primary">Criar um Novo
+                    Colaborador</a>
             </div>
 
             <table class="table" id="table">
@@ -22,22 +24,22 @@
                         Nome
                     </th>
                     <th>
-                        Emails
+                        Email
+                    </th>
+                    <th>
+                        Ativo
+                    </th>
+                    <th>
+                        Departamento
                     </th>
                     <th>
                         Perfil
                     </th>
                     <th>
-                        Salário
-                    </th>
-                    <th>
-                        Permissões
-                    </th>
-                    <th>
                         Data de Admissão
                     </th>
                     <th>
-                        Cidade
+                        Salário
                     </th>
                     <th></th>
                 </thead>
@@ -46,16 +48,23 @@
                         <tr>
                             <td>{{ $colaborator->name }}</td>
                             <td>{{ $colaborator->email }}</td>
+                            <td>
+                                <span class="badge bg-{{ $colaborator->ativo ? 'success' : 'danger' }}">
+                                    {{ $colaborator->ativo ? 'Sim' : 'Não' }}
+                                </span>
+                            </td>
+                            <td> {{ $colaborator->department->name }} </td>
                             <td>{{ $colaborator->role }}</td>
+                            <td>{{ \Carbon\Carbon::parse($colaborator->details->admission_date)->format('d/m/Y') }}
+                            </td>
                             <td>R$ {{ $colaborator->details->salary }}</td>
-                            <td>{{ implode(',', $colaborator->permissions) }}</td>
-                            <td>{{ \Carbon\Carbon::parse($colaborator->details->admission_date)->format('d/m/Y') }}</td>
-                            <td>{{ $colaborator->details->city }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
+                                    <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}"
+                                        class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
-                                    <a href="{{ route('colaborators.rhUsers.delete-rh-user', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
+                                    <a href="{{ route('colaborators.rhUsers.delete-rh-user', ['id' => $colaborator->id]) }}"
+                                        class="btn btn-sm btn-outline-dark"><i
                                             class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
                                 </div>
                             </td>
@@ -64,5 +73,5 @@
                 </tbody>
             </table>
         @endempty
-    </div>
+</div>
 </x-layouts.layout-app>

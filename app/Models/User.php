@@ -25,4 +25,10 @@ class User extends AuthUser
     {
         return $this->hasOne(UserDetail::class);
     }
+
+    public function getAtivoAttribute() 
+    {
+        if ($this->email_verified_at) return true;
+        return false;
+    }
 }
