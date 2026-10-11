@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
 
+Route::middleware('guest')->group(function () {
+    Route::get('/confirm-account/{token}', [ConfirmAccountConttoller::class, 'confirmAccount'])->name('confirmAccount');
+    Route::post('/confirm-account', [ConfirmAccountConttoller::class, 'confirmAccountSubmit'])->name('confirmAccount.submit');
+});
+
 Route::middleware('auth')->group(function () {
     Route::view('/home', 'home')->name('home');
-    
+
     Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/user/profile/update-password', [ProfileController::class, 'updatePassword'])->name('user.update.updatePassword');
     Route::post('/user/profile/update-user-data', [ProfileController::class, 'updateUserData'])->name('user.update.data');
@@ -30,6 +35,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/rh-users/update-colaborator', [RhUserController::class, 'updateRhColaborator'])->name('colaborators.rhUsers.updateColaborator');
     Route::get('/rh-users/delete-colaborator/{id}', [RhUserController::class, 'deleteRhColaborator'])->name('colaborators.rhUsers.delete-rh-user');
     Route::get('/rh-users/confirm-delete-colaborator/{id}', [RhUserController::class, 'confirmDeleteRhColaborator'])->name('colaborators.rhUsers.confirmDelete');
-
-    Route::get('/confirm-account/{token}', [ConfirmAccountConttoller::class, 'confirmAccount'])->name('confirmAccount');
 });
