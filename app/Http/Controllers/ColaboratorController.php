@@ -18,4 +18,18 @@ class ColaboratorController extends Controller
 
         return view('colaborators.admin-all-colaborators', compact('colaborators'));
     }
+
+    public function showDetails(int $id)
+    {
+        Auth::user()->can('admin', 'rh') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        if (Auth::user()->id === $id) {
+            return redirect()->route('home');
+        }
+
+        $colaborator = User::with(['details', 'department'])
+            ->find($id);
+
+        return view('colaborators.show-details', compact('colaborator'));
+    }
 }

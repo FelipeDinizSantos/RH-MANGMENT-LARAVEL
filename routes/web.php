@@ -38,4 +38,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh-users/confirm-delete-colaborator/{id}', [RhUserController::class, 'confirmDeleteRhColaborator'])->name('colaborators.rhUsers.confirmDelete');
 
     Route::get('/colaborators', [ColaboratorController::class, 'index'])->name('colaborators.index');
+    Route::get('/colaborators/details/{id}', [ColaboratorController::class, 'showDetails'])->name('colaborators.showDetails');
 });
