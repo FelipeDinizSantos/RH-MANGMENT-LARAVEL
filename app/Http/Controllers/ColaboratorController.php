@@ -12,7 +12,8 @@ class ColaboratorController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
 
-        $colaborators = User::with(['details', 'department'])
+        $colaborators = User::withTrashed()
+            ->with(['details', 'department'])
             ->where('role', '!=', 'admin')
             ->get();
 
@@ -28,7 +29,7 @@ class ColaboratorController extends Controller
         }
 
         $colaborator = User::with(['details', 'department'])
-            ->find($id);
+            ->findOrFail($id);
 
         return view('colaborators.show-details', compact('colaborator'));
     }
@@ -57,6 +58,22 @@ class ColaboratorController extends Controller
 
         $colaborator = User::findOrFail($id);
         $colaborator->delete();
+
+        return redirect()->route('colaborators.index');
+    }
+
+    public function restoreColaborator(int $id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        if (Auth::user()->id === $id) {
+            return redirect()->route('home');
+        }
+
+        $colaborator = User::withTrashed()
+            ->findOrFail($id);
+
+        $colaborator->restore();
 
         return redirect()->route('colaborators.index');
     }

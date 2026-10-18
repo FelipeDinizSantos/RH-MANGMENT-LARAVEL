@@ -59,14 +59,22 @@
                             </td>
                             <td>R$ {{ $colaborator->details->salary }}</td>
                             <td>
-                                <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}"
-                                        class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
-                                    <a href="{{ route('colaborators.rhUsers.delete-rh-user', ['id' => $colaborator->id]) }}"
-                                        class="btn btn-sm btn-outline-dark"><i
-                                            class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
-                                </div>
+                                @empty($colaborator->deleted_at)
+                                    <div class="d-flex gap-3 justify-content-end">
+                                        <a href="{{ route('colaborators.rhUsers.editRhColaborator', ['id' => $colaborator->id]) }}"
+                                            class="btn btn-sm btn-outline-dark"><i
+                                                class="fa-regular fa-pen-to-square me-2 ms-3"></i>Editar</a>
+                                        <a href="{{ route('colaborators.rhUsers.delete-rh-user', ['id' => $colaborator->id]) }}"
+                                            class="btn btn-sm btn-outline-dark"><i
+                                                class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>
+                                    </div>
+                                @else
+                                    <div class="d-flex gap-3 justify-content-center">
+                                        <a href="{{ route('colaborators.rhUsers.restore', ['id' => $colaborator->id]) }}"
+                                            class="btn btn-sm btn-outline-dark"><i
+                                                class="fa-solid fa-trash-arrow-up me-2 ms-3"></i>Restaurar</a>
+                                    </div>
+                                @endempty
                             </td>
                         </tr>
                     @endforeach
