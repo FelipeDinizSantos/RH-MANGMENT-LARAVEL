@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +47,26 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back()->with('success_change_data', 'Perfil atualizado com sucesso!');
+    }
+
+    public function updateUserAddress(Request $request)
+    {
+        $request->validate([
+            'address' => 'required|min:3|max:100',
+            'zip_code' => 'required|min:8|max:8',
+            'city' => 'required|min:3|max:50',
+            'phone' => 'required|min:6|max:20',
+        ]);
+
+        $user = User::with('details')->find(Auth::id());
+
+        $user->details->address = $request->input('address');
+        $user->details->zip_code = $request->input('zip_code');
+        $user->details->city = $request->input('city');
+        $user->details->phone = $request->input('phone');
+
+        $user->details->save();
+
+        return redirect()->back()->with('success_change_address', 'Endereço atualizado com sucesso!');
     }
 }

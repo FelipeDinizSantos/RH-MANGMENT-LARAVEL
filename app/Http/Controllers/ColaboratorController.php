@@ -20,6 +20,16 @@ class ColaboratorController extends Controller
         return view('colaborators.admin-all-colaborators', compact('colaborators'));
     }
 
+    public function home()
+    {
+        Auth::user()->can('colaborator') ?: abort(403, 'Você não tem permissão para acessar está página!');
+
+        $colaborator = User::with('details', 'department')
+            ->findOrFail(Auth::user()->id);
+
+        return view('colaborators.show-details', compact('colaborator'));
+    }
+
     public function showDetails(int $id)
     {
         Auth::user()->can('admin', 'rh') ?: abort(403, 'Você não tem permissão para acessar está página!');
