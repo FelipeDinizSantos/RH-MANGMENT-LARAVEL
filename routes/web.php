@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         } elseif (Auth::user()->role === 'rh') {
             return redirect()->route('rh.management.home');
         } else {
-            return redirect()->route('admin.home');
+            die('Vai para página inicial do colaborador normal.');
         }
     })->name('home');
 
@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/rh-users/management/home', [RhManagementController::class, 'home'])->name('rh.management.home');
     Route::get('/rh-users/management/new-colaborator', [RhManagementController::class, 'newColaborator'])->name('rh.management.newColaborator');
+    Route::get('/rh-users/management/edit-colaborator/{id}', [RhManagementController::class, 'editColaborator'])->name('rh.management.editColaborator');
+    Route::post('/rh-users/management/update-colaborator', [RhManagementController::class, 'updateColaborator'])->name('rh.management.updateColaborator');
+    Route::post('/rh-users/management/create-colaborator', [RhManagementController::class, 'createColaborator'])->name('rh.management.createColaborator');
 
     Route::get('/colaborators', [ColaboratorController::class, 'index'])->name('colaborators.index');
     Route::get('/colaborators/details/{id}', [ColaboratorController::class, 'showDetails'])->name('colaborators.showDetails');

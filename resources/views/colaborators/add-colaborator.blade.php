@@ -5,7 +5,7 @@
 
         <hr>
 
-        <form action="#" method="post">
+        <form action="{{ route('rh.management.createColaborator') }}" method="post">
             @csrf
 
             <div class="container-fluid">
