@@ -66,7 +66,7 @@
                                         <a href="{{ route('rh.management.editColaborator', ['id' => $colaborator->id]) }}"
                                             class="btn btn-sm btn-outline-dark"><i
                                                 class="fa-regular fa-edit me-2 ms-3"></i>Editar</a>
-                                        <a href="#" class="btn btn-sm btn-outline-dark"><i
+                                        <a href="{{ route('rh.management.details', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i
                                                 class="fas fa-eye me-2 ms-3"></i>Detalhes</a>
                                         <a href="#" class="btn btn-sm btn-outline-dark"><i
                                                 class="fa-regular fa-trash-can me-2 ms-3"></i>Remover</a>

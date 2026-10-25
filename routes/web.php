@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh-users/management/new-colaborator', [RhManagementController::class, 'newColaborator'])->name('rh.management.newColaborator');
     Route::get('/rh-users/management/edit-colaborator/{id}', [RhManagementController::class, 'editColaborator'])->name('rh.management.editColaborator');
     Route::post('/rh-users/management/update-colaborator', [RhManagementController::class, 'updateColaborator'])->name('rh.management.updateColaborator');
+    Route::get('/rh-users/management/details/{id}', [RhManagementController::class, 'showDetails'])->name('rh.management.details');
     Route::post('/rh-users/management/create-colaborator', [RhManagementController::class, 'createColaborator'])->name('rh.management.createColaborator');
 
     Route::get('/colaborators', [ColaboratorController::class, 'index'])->name('colaborators.index');
