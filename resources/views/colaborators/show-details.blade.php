@@ -26,7 +26,7 @@
                         @endforeach
                     </ul>
 
-                    <p>Departamento: <strong>{{ $colaborator->department->name }}</strong></p>
+                    <p>Departamento: <strong>{{ $colaborator->department->name ?? '-' }}</strong></p>
                     <p>Ativo: 
                         @if($colaborator->ativo)
                             <span class="badge bg-success">Sim</span>

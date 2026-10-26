@@ -54,7 +54,7 @@
                                     {{ $colaborator->ativo ? 'Sim' : 'Não' }}
                                 </span>
                             </td>
-                            <td> {{ $colaborator->department->name }} </td>
+                            <td> {{ $colaborator->department->name  ?? '-'}} </td>
                             <td>{{ $colaborator->role }}</td>
                             <td>{{ \Carbon\Carbon::parse($colaborator->details->admission_date)->format('d/m/Y') }}
                             </td>
