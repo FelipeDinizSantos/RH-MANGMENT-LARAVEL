@@ -5,9 +5,11 @@
 
             <h3>Alterar suas Informações</h3>
 
+            <hr>
+
             <div class="mb-3">
                 <label for="name" class="form-label">Nome</label>
-                <input type="text" name="name" id="name" class="form-control">
+                <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $colaborator->name) }}">
             </div>
             @error('name')
                 <div class="text-danger">
@@ -17,7 +19,7 @@
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email (Username)</label>
-                <input type="email" name="email" id="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control" value="{{ old('name', $colaborator->email) }}">
             </div>
             @error('email')
                 <div class="text-alert">

@@ -1,4 +1,4 @@
-<div class="col-6">
+<div class="col-8">
     <div class="border p-5 shadow-sm">
         <form action="{{ route('user.update.address') }}" method="post">
             @csrf
@@ -9,7 +9,7 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Endereço</label>
-                <input type="text" name="address" id="address" class="form-control">
+                <input type="text" name="address" id="address" class="form-control" value="{{ old('address', $colaborator->details->address) }}">
             </div>
             @error('address')
                 <div class="text-danger">
@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="zip_code" class="form-label">CEP</label>
-                        <input type="text" name="zip_code" id="zip_code" class="form-control">
+                        <input type="text" name="zip_code" id="zip_code" class="form-control" value="{{ old('address', $colaborator->details->zip_code) }}">
                     </div>
                     @error('zip_code')
                         <div class="text-alert">
@@ -36,7 +36,7 @@
 
                     <div class="mb-3">
                         <label for="city" class="form-label">Cidade</label>
-                        <input type="text" name="city" id="city" class="form-control">
+                        <input type="text" name="city" id="city" class="form-control" value="{{ old('address', $colaborator->details->city) }}">
                     </div>
                     @error('city')
                         <div class="text-alert">
@@ -51,7 +51,7 @@
 
                 <div class="mb-3">
                     <label for="phone" class="form-label">Telefone</label>
-                    <input type="text" name="phone" id="phone" class="form-control">
+                    <input type="text" name="phone" id="phone" class="form-control" value="{{ old('address', $colaborator->details->phone) }}">
                 </div>
                 @error('phone')
                     <div class="text-alert">

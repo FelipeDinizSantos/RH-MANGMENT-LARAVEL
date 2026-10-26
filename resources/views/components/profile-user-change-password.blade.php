@@ -5,6 +5,8 @@
 
             <h3>Altere sua Senha</h3>
 
+            <hr>
+
             <div class="mb-3">
                 <label for="current_password" class="form-label">Senha Atual</label>
                 <input type="password" name="current_password" id="current_password" class="form-control">
